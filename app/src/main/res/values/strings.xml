@@ -28,5 +28,6 @@
     <string name="setup_auto_mode">AUTO: detect among the checked languages (slower)</string>
     <string name="setup_autostart">Start listening as soon as the keyboard opens</string>
     <string name="setup_try">Try it here</string>
+    <string name="setup_version">Version %1$s</string>
     <string name="setup_about">Speech recognition: tinyasr by dkaraush (GPL-3.0-or-later), model en-ru-uk. Voice activity detection: Silero VAD (MIT). This app is free software under the GPL-3.0-or-later.</string>
 </resources>

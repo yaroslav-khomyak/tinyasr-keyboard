@@ -28,5 +28,6 @@
     <string name="setup_auto_mode">AUTO: визначати серед позначених мов (повільніше)</string>
     <string name="setup_autostart">Починати слухати, щойно відкриється клавіатура</string>
     <string name="setup_try">Спробуйте тут</string>
+    <string name="setup_version">Версія %1$s</string>
     <string name="setup_about">Розпізнавання мовлення: tinyasr від dkaraush (GPL-3.0-or-later), модель en-ru-uk. Визначення голосу: Silero VAD (MIT). Ця програма є вільним програмним забезпеченням за ліцензією GPL-3.0-or-later.</string>
 </resources>

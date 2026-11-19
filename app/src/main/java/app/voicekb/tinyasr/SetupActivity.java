@@ -95,7 +95,7 @@ public final class SetupActivity extends Activity {
         col.addView(test, lp);
 
         TextView about = new TextView(this);
-        about.setText(R.string.setup_about);
+        about.setText(getString(R.string.setup_version, versionName()) + "\n\n" + getString(R.string.setup_about));
         about.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
         about.setPadding(0, dp(16), 0, 0);
         col.addView(about);
@@ -103,6 +103,14 @@ public final class SetupActivity extends Activity {
         ScrollView scroll = new ScrollView(this);
         scroll.addView(col);
         setContentView(scroll);
+    }
+
+    private String versionName() {
+        try {
+            return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return "?";
+        }
     }
 
     private Button step(LinearLayout parent) {

@@ -5,6 +5,10 @@ plugins {
 // The private release key, when the build has one (CI: from the repository's secrets; locally: set these yourself).
 def ownKeystore = System.getenv("SIGNING_KEYSTORE_FILE")
 
+// Every CI build gets the next version, so that an updater can tell builds apart. Local builds are version 1 and
+// cannot be installed over a CI build (Android refuses downgrades).
+def buildNumber = (System.getenv("GITHUB_RUN_NUMBER") ?: "1") as Integer
+
 android {
     namespace "app.voicekb.tinyasr"
     compileSdk 35
@@ -14,8 +18,8 @@ android {
         applicationId "app.voicekb.tinyasr"
         minSdk 28
         targetSdk 35
-        versionCode 1
-        versionName "0.1.0"
+        versionCode buildNumber
+        versionName "0.1.${buildNumber}"
         ndk {
             abiFilters "arm64-v8a"
         }

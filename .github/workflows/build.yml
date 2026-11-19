@@ -3,6 +3,7 @@ name: Build APK
 on:
   push:
     branches: [main]
+    paths-ignore: ["**.md", "LICENSE"]
   pull_request:
   workflow_dispatch:
 
@@ -77,12 +78,18 @@ jobs:
           name: tinyasr-keyboard
           path: tinyasr-keyboard.apk
 
-      # A direct download link that works on a phone: Releases -> latest.
-      - name: Publish to the "latest" release
+      # One numbered release per build (the version is in app/build.gradle), so that updaters such as Obtainium
+      # see each new one. The newest is always at .../releases/latest.
+      - name: Publish the release
         if: github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release delete latest --yes --cleanup-tag || true
-          gh release create latest tinyasr-keyboard.apk --title "Latest build" \
-            --notes "Built from ${GITHUB_SHA}." --target "${GITHUB_SHA}"
+          version="v0.1.${GITHUB_RUN_NUMBER}"
+          gh release create "$version" tinyasr-keyboard.apk --title "$version" --generate-notes --latest \
+            --target "${GITHUB_SHA}"
+          # The rolling "latest" release from before numbered releases.
+          gh release delete latest --yes --cleanup-tag 2>/dev/null || true
+          # Keep the 10 newest releases.
+          gh release list --limit 100 --json tagName -q '.[10:][].tagName' |
+            while read -r old; do gh release delete "$old" --yes --cleanup-tag; done

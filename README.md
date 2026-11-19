@@ -6,8 +6,8 @@ An offline voice keyboard for Android. Tap the microphone, speak, and the text a
 typing in. Speech is recognized on the phone by [tinyasr](https://github.com/dkaraush/tinyasr) with its `en-ru-uk`
 model: Ukrainian, English and Russian.
 
-**[Download the latest APK](https://github.com/yaroslav-khomyak/tinyasr-keyboard/releases/tag/latest)**
-(42 MB, Android 9+, arm64)
+**[Download the latest APK](https://github.com/yaroslav-khomyak/tinyasr-keyboard/releases/latest/download/tinyasr-keyboard.apk)**
+(42 MB, Android 9+, arm64) · [all releases](https://github.com/yaroslav-khomyak/tinyasr-keyboard/releases)
 
 > Status: early. The recognition path is covered by automated tests, but the keyboard has had little testing on
 > real devices. Reports are welcome.
@@ -29,6 +29,20 @@ model: Ukrainian, English and Russian.
 2. Open **TinyASR Voice Keyboard** and follow the three steps: enable the keyboard, allow the microphone, switch
    to it.
 3. In any text field, tap the microphone and speak. Tap again to stop.
+
+### Automatic updates
+
+The app has no internet permission, so it cannot update itself. Use
+[Obtainium](https://github.com/ImranR98/Obtainium), an open-source app that installs and updates apps straight from
+their GitHub releases:
+
+1. Install Obtainium.
+2. In Obtainium tap **Add App**, paste `https://github.com/yaroslav-khomyak/tinyasr-keyboard` as the app source URL, and add it.
+3. Install the keyboard from Obtainium. If you already installed the APK by hand, uninstall it first: Obtainium
+   can only update silently what it installed itself.
+
+Obtainium then checks for new releases in the background. On Android 12+ it can install them without asking;
+on older versions it notifies you.
 
 ## Using it
 
@@ -74,8 +88,9 @@ scripts/prepare.sh          # fetches tinyasr at the pinned commit, builds libti
 ./gradlew assembleRelease   # app/build/outputs/apk/release/app-release.apk
 ```
 
-Every push to `main` does the same in GitHub Actions, runs the tests, and replaces the APK of the
-[`latest` release](https://github.com/yaroslav-khomyak/tinyasr-keyboard/releases/tag/latest).
+Every push to `main` that changes more than documentation does the same in GitHub Actions, runs the tests, and
+publishes a numbered release (`v0.1.<build number>`); the 10 newest are kept. Local builds are always version 1,
+so they cannot be installed over a CI build.
 
 To use another tinyasr version or model, change `TINYASR_REV` / `MODEL` in `scripts/prepare.sh`, `ASR_ASSET` in
 `VoiceEngine.java` and `LANGS` in `Prefs.java`.
