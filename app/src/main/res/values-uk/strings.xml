@@ -21,6 +21,11 @@
     <string name="setup_enable">1. Увімкнути клавіатуру</string>
     <string name="setup_permission">2. Дозволити мікрофон</string>
     <string name="setup_choose">3. Перемкнутися на цю клавіатуру</string>
+    <string name="setup_languages">Мови на клавіші мови</string>
+    <string name="lang_uk">Українська (UK)</string>
+    <string name="lang_en">Англійська (EN)</string>
+    <string name="lang_ru">Російська (RU)</string>
+    <string name="setup_auto_mode">AUTO: визначати серед позначених мов (повільніше)</string>
     <string name="setup_autostart">Починати слухати, щойно відкриється клавіатура</string>
     <string name="setup_try">Спробуйте тут</string>
     <string name="setup_about">Розпізнавання мовлення: tinyasr від dkaraush (GPL-3.0-or-later), модель en-ru-uk. Визначення голосу: Silero VAD (MIT). Ця програма є вільним програмним забезпеченням за ліцензією GPL-3.0-or-later.</string>

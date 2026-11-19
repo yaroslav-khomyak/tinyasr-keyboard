@@ -278,11 +278,12 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
         composing = false;
         state = VoiceEngine.State.LOADING;
         refresh();
-        engine.start(Prefs.MODES[prefs.mode()], prefs.lastLang(), this);
+        String mode = prefs.mode();
+        engine.start(mode, prefs.startLang(mode), this);
     }
 
     private void cycleLanguage() {
-        prefs.setMode((prefs.mode() + 1) % Prefs.MODES.length);
+        prefs.setMode(prefs.nextMode());
         boolean wasListening = engine.isRunning();
         if (wasListening) abort();
         refresh();
@@ -445,6 +446,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     private void refresh() {
         if (status == null) return;
         langKey.setText(Prefs.label(prefs.mode()));
+        langKey.setEnabled(prefs.modes().size() > 1);
         if (!hasMicPermission()) {
             status.setText(R.string.status_permission);
             mic.setMode(MicButton.DISABLED);

@@ -53,6 +53,31 @@ public final class SetupActivity extends Activity {
         choose = step(col);
         choose.setOnClickListener(v -> getSystemService(InputMethodManager.class).showInputMethodPicker());
 
+        TextView langsTitle = new TextView(this);
+        langsTitle.setText(R.string.setup_languages);
+        langsTitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        langsTitle.setPadding(0, dp(20), 0, dp(4));
+        col.addView(langsTitle);
+
+        int[] names = {R.string.lang_uk, R.string.lang_en, R.string.lang_ru};
+        for (int i = 0; i < Prefs.LANGS.length; i++) {
+            String lang = Prefs.LANGS[i];
+            CheckBox box = new CheckBox(this);
+            box.setText(names[i]);
+            box.setChecked(prefs.langEnabled(lang));
+            box.setOnCheckedChangeListener((b, checked) -> {
+                // The last language stays on.
+                if (!prefs.setLangEnabled(lang, checked)) b.setChecked(true);
+            });
+            col.addView(box);
+        }
+
+        CheckBox autoMode = new CheckBox(this);
+        autoMode.setText(R.string.setup_auto_mode);
+        autoMode.setChecked(prefs.autoMode());
+        autoMode.setOnCheckedChangeListener((b, checked) -> prefs.setAutoMode(checked));
+        col.addView(autoMode);
+
         CheckBox auto = new CheckBox(this);
         auto.setText(R.string.setup_autostart);
         auto.setChecked(prefs.autoStart());

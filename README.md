@@ -4,12 +4,12 @@ An Android voice-only keyboard (input method) that types what you say, offline, 
 [tinyasr](https://github.com/dkaraush/tinyasr) and its `en-ru-uk` model. Ukrainian, English and Russian can be selected.
 
 - Live text while you speak, with punctuation and capitalization from the model.
-- Keys: previous keyboard (hold: keyboard picker), language (UK / EN / RU / UK+EN), microphone, delete, enter,
+- Keys: previous keyboard (hold: keyboard picker), language (cycles through the languages checked in the app, plus AUTO), microphone, delete, enter,
   `,` `.` space `?` `!`.
 - Nothing leaves the phone: the app has no internet permission.
 - Android 9+ (API 28), arm64 only.
 
-`UK+EN` lets the recognizer pick the language per sentence; it costs about twice the CPU of a fixed language.
+`AUTO` lets the recognizer pick among the checked languages per sentence; it costs that many times the CPU of a fixed language.
 
 ## Get the APK
 
@@ -26,7 +26,7 @@ scripts/prepare.sh          # fetches tinyasr at the pinned commit, builds libti
 ```
 
 To use another tinyasr version or model, change `TINYASR_REV` / `MODEL` in `scripts/prepare.sh`
-(and `ASR_ASSET` in `VoiceEngine.java`, the modes in `Prefs.java`).
+(and `ASR_ASSET` in `VoiceEngine.java`, `LANGS` in `Prefs.java`).
 
 ## How it works
 
