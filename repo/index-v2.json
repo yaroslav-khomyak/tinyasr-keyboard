@@ -1,0 +1,98 @@
+{
+  "repo": {
+    "name": {
+      "en-US": "TinyASR Voice Keyboard"
+    },
+    "description": {
+      "en-US": "Offline voice keyboard for Android, built from https://github.com/yaroslav-khomyak/tinyasr-keyboard"
+    },
+    "icon": {
+      "en-US": {
+        "name": "/icons/icon.png",
+        "sha256": "dcd7544555c86c0a305ea4e310e661e61352c8729d12538161035893cff01e07",
+        "size": 957
+      }
+    },
+    "address": "https://raw.githubusercontent.com/yaroslav-khomyak/tinyasr-keyboard/fdroid/repo",
+    "timestamp": 1795078934000,
+    "categories": {
+      "Writing": {
+        "name": {
+          "en-US": "Writing"
+        }
+      }
+    }
+  },
+  "packages": {
+    "app.voicekb.tinyasr": {
+      "metadata": {
+        "added": 1795078934000,
+        "categories": [
+          "Writing"
+        ],
+        "changelog": "https://github.com/yaroslav-khomyak/tinyasr-keyboard/releases",
+        "issueTracker": "https://github.com/yaroslav-khomyak/tinyasr-keyboard/issues",
+        "lastUpdated": 1795078934000,
+        "license": "GPL-3.0-or-later",
+        "sourceCode": "https://github.com/yaroslav-khomyak/tinyasr-keyboard",
+        "authorName": "Yaroslav Khomyak",
+        "name": {
+          "en-US": "TinyASR Voice Keyboard",
+          "uk": "Голосова клавіатура TinyASR"
+        },
+        "summary": {
+          "en-US": "Offline voice typing in Ukrainian, English and Russian",
+          "uk": "Голосове введення українською, англійською та російською без інтернету"
+        },
+        "description": {
+          "en-US": "A voice-only keyboard: tap the microphone, speak, and the text appears in whatever app you are typing in.\n\nSpeech is recognized on the phone by tinyasr with its en-ru-uk model. The app has no internet permission, so audio never leaves the device.\n\n* Live text while you speak, with punctuation and capitalization\n* Language key for Ukrainian, English, Russian, or automatic detection among the ones you choose\n* Keys for delete, enter, space and basic punctuation; one tap back to your normal keyboard\n",
+          "uk": "Голосова клавіатура: натисніть мікрофон, говоріть — і текст з'являється в будь-якій програмі, де ви пишете.\n\nМовлення розпізнається на телефоні бібліотекою tinyasr з моделлю en-ru-uk. Програма не має дозволу на доступ до інтернету, тому звук не залишає пристрій.\n\n* Текст з'являється під час мовлення, з розділовими знаками та великими літерами\n* Клавіша мови: українська, англійська, російська або автоматичне визначення серед обраних\n* Клавіші видалення, Enter, пробілу та основних розділових знаків; один дотик — і ви повертаєтесь до звичайної клавіатури\n"
+        },
+        "icon": {
+          "en-US": {
+            "name": "/app.voicekb.tinyasr/en-US/icon_4pf1czBIQb7AcpkcnVDdtMddBD1QABdLpS4xHGxSvVc=.png",
+            "sha256": "e297f573304841bec072991c9d50ddb4c75d043d5000174ba52e311c6c52bd57",
+            "size": 34097
+          }
+        },
+        "preferredSigner": "58f133ae50c67b5283dec2a58d2b5959f753f810bd6bcaccf70d1e368615f51d"
+      },
+      "versions": {
+        "26d2797494ba3230e794690774c96c7bd947779415a58738a43a287103162444": {
+          "added": 1795078934000,
+          "file": {
+            "name": "/app.voicekb.tinyasr_10.apk",
+            "sha256": "26d2797494ba3230e794690774c96c7bd947779415a58738a43a287103162444",
+            "size": 42215110
+          },
+          "manifest": {
+            "nativecode": [
+              "arm64-v8a"
+            ],
+            "versionName": "0.1.10",
+            "versionCode": 10,
+            "features": [
+              {
+                "name": "android.hardware.microphone"
+              }
+            ],
+            "usesSdk": {
+              "minSdkVersion": 28,
+              "targetSdkVersion": 35
+            },
+            "signer": {
+              "sha256": [
+                "58f133ae50c67b5283dec2a58d2b5959f753f810bd6bcaccf70d1e368615f51d"
+              ]
+            },
+            "usesPermission": [
+              {
+                "name": "android.permission.RECORD_AUDIO"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

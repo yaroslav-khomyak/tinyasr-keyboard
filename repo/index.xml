@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fdroid>
+	<repo icon="icon.png" name="TinyASR Voice Keyboard" pubkey="3082059b30820383a003020102020854f85d0692892fb2300d06092a864886f70d01010c0500307b3110300e06035504061307556e6b6e6f776e3110300e06035504081307556e6b6e6f776e3110300e06035504071307556e6b6e6f776e3110300e060355040a1307556e6b6e6f776e3110300e060355040b1307556e6b6e6f776e311f301d060355040313165961726f736c6176204b686f6d79616b20284a484d293020170d3236313131393038323933365a180f32303534303430363038323933365a307b3110300e06035504061307556e6b6e6f776e3110300e06035504081307556e6b6e6f776e3110300e06035504071307556e6b6e6f776e3110300e060355040a1307556e6b6e6f776e3110300e060355040b1307556e6b6e6f776e311f301d060355040313165961726f736c6176204b686f6d79616b20284a484d2930820222300d06092a864886f70d01010105000382020f003082020a0282020100bb87f1299f6c5647175b361a2e86a97fa8e12619254ff29c65f35933e90a4fee703d5512b11ab8096b4a125a7bd8f916502b7940e7ca6d5d37d5d4254e74190fd9e6bb69d6879a765b115ba43a61245fff400ceb184b8808d0e9645d256a5a899e2e8d241a0e934aae241b5cad233f63d2f1b66abed4f2dc1664eeb926d964ee1ed2c78c3c78a88682aa56f000476ed2d42be6043efa67eea9d258b94fd8ac5fc5ac4c6f6fb918cc5b0bee23a287ea5510e248bfd618d0bcaa8be3aedc9bb4bde7ced33098998cfa739fc3362afba09606f227a5e26da10ca32431dd5449809d9b3183a2c289273a01e2a51fd6d8b8030ea74b002f70d2c02171c3943f666b660ab9dd4a4dabcdc28337d7b40c71b0c40abd36ca1cee79430adf68cf5453f56062d9676a1b71c1a7e761b38b143fcb31a3d936574325ee113142e5252b94e63f523048913b8bfa79cf3a53280f1726eaa36f548aa99f14b27178d432d24fff22049eed11df67c768d4251e4be671bcca0046c7002ea29524bb8fb0a10eead3b0bc07d523fcc18a71bf885d4e4d7b22a74c3c20558f4218acdb102dd10e95285b8c95c0c3b8c1e30bd855f10bf79f7026381ac6fc7acbc94fd73d3f9fda9d51d9df8e0341923a3af8c8f2648f443bfab65ccccefa7e3c991e7d5a4479d3368101cd9c4874c920b4ef56956194ba6a3c370da9a149fb121f6fe51ab1dcf63eb2b70203010001a321301f301d0603551d0e041604146a3453002dcfa11361a4abd6a0cca71fd6f3040e300d06092a864886f70d01010c05000382020100109c6cdb8c822dc0057c8acb718a7b424d4a909cbe51af894792244ceaae1f4ceaed6cb2407a4da0a741721156155d9fd9d8b805ed898078c8c8d7f978f15c393521e6fd118971ce94a2466975f9a63242573d4ce9b664d260af07cc4e9cf257531c29ca390a0023ce0876afbcea1d8c3fdcbd469fa8405f67df8a5c80ab21097197db34c7415f2bfb3d7dcea8ed1cc66acf85f0becaed1c708e4b3f5cb4146648cd7d47ac47cdcc790d101b0c020aa1d26658c886d921de19ac8b65723e794b062344e5280e4b26f0a0f445b8998fdb2aa314b9bed19633c592b232aaf34e84f06460ccffd5302d78669b646a3e3c3f8bb58e09e738e898e491c55b9ee02ea0f9a33e9eec0a9e751171bc230ae102345572c5ef2a5c2adfb7d9f05d9f0bfe843152900afb89c984d2684764c633522616cd4af568e51ba6dadedf56065baebd6e2a0d0f094266a5e8e0931e0131f8b52bb74d293af2ba55b41744a267871e36a05ce68e3d9af6c8c456f621e363ebc63b2a2a7a9e0c121fab6552a558004820da0b467ed26cca43abe50c0d9933bd69c932caab661b2c66a7f68b4f2c43e9405ed7d28e0a605fb639b62e4aad52e52d9085f9b9f1ef446990c44ca689e70a2e6161ebf88c28d1cc0eb4abd6eb54ca3a2a78862749a8c38b5612478037452146bc121633c4e271d0ebabdf650b107323d3b61c31a8f69527518e358724560f52" timestamp="1795078934" url="https://raw.githubusercontent.com/yaroslav-khomyak/tinyasr-keyboard/fdroid/repo" version="20002">
+		<description>Offline voice keyboard for Android, built from https://github.com/yaroslav-khomyak/tinyasr-keyboard</description>
+	</repo>
+	<application id="app.voicekb.tinyasr">
+		<id>app.voicekb.tinyasr</id>
+		<added>2026-11-19</added>
+		<lastupdated>2026-11-19</lastupdated>
+		<name>TinyASR Voice Keyboard</name>
+		<summary>Offline voice typing in Ukrainian, English and Russian</summary>
+		<desc>A voice-only keyboard: tap the microphone, speak, and the text appears in whatever app you are typing in.
+
+Speech is recognized on the phone by tinyasr with its en-ru-uk model. The app has no internet permission, so audio never leaves the device.
+
+* Live text while you speak, with punctuation and capitalization
+* Language key for Ukrainian, English, Russian, or automatic detection among the ones you choose
+* Keys for delete, enter, space and basic punctuation; one tap back to your normal keyboard
+</desc>
+		<license>GPL-3.0-or-later</license>
+		<categories>Writing</categories>
+		<category>Writing</category>
+		<web></web>
+		<source>https://github.com/yaroslav-khomyak/tinyasr-keyboard</source>
+		<tracker>https://github.com/yaroslav-khomyak/tinyasr-keyboard/issues</tracker>
+		<changelog>https://github.com/yaroslav-khomyak/tinyasr-keyboard/releases</changelog>
+		<author>Yaroslav Khomyak</author>
+		<marketversion></marketversion>
+		<marketvercode>10</marketvercode>
+		<package>
+			<version>0.1.10</version>
+			<versioncode>10</versioncode>
+			<apkname>app.voicekb.tinyasr_10.apk</apkname>
+			<hash type="sha256">26d2797494ba3230e794690774c96c7bd947779415a58738a43a287103162444</hash>
+			<size>42215110</size>
+			<sdkver>28</sdkver>
+			<targetSdkVersion>35</targetSdkVersion>
+			<added>2026-11-19</added>
+			<sig>3411463e75b53e113823a031cd3929a6</sig>
+			<permissions>RECORD_AUDIO</permissions>
+			<nativecode>arm64-v8a</nativecode>
+			<features>android.hardware.microphone</features>
+		</package>
+	</application>
+</fdroid>
