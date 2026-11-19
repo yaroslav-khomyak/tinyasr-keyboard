@@ -33,6 +33,18 @@ model: Ukrainian, English and Russian.
 To update, download the newest APK from the same link and install it over the old one; settings are kept. The
 installed version is shown at the bottom of the app's screen.
 
+### Updates through F-Droid
+
+The app has no internet permission and cannot update itself, but this repository publishes its own F-Droid
+repository. In the [F-Droid](https://f-droid.org) app: **Settings → Repositories → +**, then paste
+
+```
+https://raw.githubusercontent.com/yaroslav-khomyak/tinyasr-keyboard/fdroid/repo?fingerprint=58F133AE50C67B5283DEC2A58D2B5959F753F810BD6BCACCF70D1E368615F51D
+```
+
+F-Droid then lists **TinyASR Voice Keyboard** and offers each new build as an update. The APKs are the same ones
+as on the releases page, signed with the same key, so F-Droid can update a copy you installed by hand.
+
 ## Using it
 
 | Key | Tap | Hold |
@@ -78,7 +90,8 @@ scripts/prepare.sh          # fetches tinyasr at the pinned commit, builds libti
 ```
 
 Every push to `main` that changes more than documentation does the same in GitHub Actions, runs the tests, and
-publishes a numbered release (`v0.1.<build number>`); the 10 newest are kept. Local builds are always version 1,
+publishes a numbered release (`v0.1.<build number>`); the 10 newest are kept. It also rebuilds the F-Droid
+repository (`scripts/fdroid-repo.sh`, metadata in `fdroid/`) and force-pushes it to the `fdroid` branch. Local builds are always version 1,
 so they cannot be installed over a CI build.
 
 To use another tinyasr version or model, change `TINYASR_REV` / `MODEL` in `scripts/prepare.sh`, `ASR_ASSET` in
@@ -118,7 +131,8 @@ The models (38 MB + 2 MB) are stored uncompressed in the APK and mapped from it 
 
 Release APKs are signed in CI with a private key held in this repository's Actions secrets
 (`SIGNING_KEYSTORE` as base64, `SIGNING_STORE_PASSWORD`, `SIGNING_KEY_ALIAS`, `SIGNING_KEY_PASSWORD`). The
-"Show the signing certificate" step of each build prints the certificate's fingerprint.
+"Show the signing certificate" step of each build prints the certificate's fingerprint. The same key signs the
+F-Droid repository index.
 
 Without those secrets (forks, pull requests, local builds) the build falls back to `signing/sideload.jks`, a public
 throwaway key that anyone can sign with. To sign a local build with your own key, set `SIGNING_KEYSTORE_FILE` to

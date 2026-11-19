@@ -14,8 +14,9 @@ root="$(cd "$(dirname "$0")/.." && pwd)"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 cp -r "$root/fdroid/metadata" "$work/metadata"
-mkdir "$work/repo"
+mkdir -p "$work/repo/icons"
 cp "$apk" "$work/repo/"
+cp "$root/fdroid/metadata/app.voicekb.tinyasr/en-US/icon.png" "$work/repo/icons/icon.png"
 
 # The passwords stay in the environment; the file only names the variables.
 cat > "$work/config.yml" <<CONFIG
