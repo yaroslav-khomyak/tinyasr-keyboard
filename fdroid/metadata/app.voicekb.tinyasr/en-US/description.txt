@@ -1,0 +1,7 @@
+A voice-only keyboard: tap the microphone, speak, and the text appears in whatever app you are typing in.
+
+Speech is recognized on the phone by tinyasr with its en-ru-uk model. The app has no internet permission, so audio never leaves the device.
+
+* Live text while you speak, with punctuation and capitalization
+* Language key for Ukrainian, English, Russian, or automatic detection among the ones you choose
+* Keys for delete, enter, space and basic punctuation; one tap back to your normal keyboard

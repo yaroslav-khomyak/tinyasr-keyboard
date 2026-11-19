@@ -93,3 +93,26 @@ jobs:
           # Keep the 10 newest releases.
           gh release list --limit 100 --json tagName -q '.[10:][].tagName' |
             while read -r old; do gh release delete "$old" --yes --cleanup-tag; done
+
+      # An F-Droid repository with the newest APK, on the "fdroid" branch (a single commit, replaced each time).
+      # Users add https://raw.githubusercontent.com/<owner>/<repo>/fdroid/repo in the F-Droid app.
+      - name: Publish the F-Droid repository
+        if: github.event_name != 'pull_request' && env.SIGNING_KEYSTORE_FILE != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        run: |
+          pipx install fdroidserver
+          apk="$RUNNER_TEMP/app.voicekb.tinyasr_${GITHUB_RUN_NUMBER}.apk"
+          cp tinyasr-keyboard.apk "$apk"
+          url="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/fdroid/repo"
+          scripts/fdroid-repo.sh "$apk" "$RUNNER_TEMP/fdroid" "$url"
+          cd "$RUNNER_TEMP/fdroid"
+          ls -la repo
+          git init -q -b fdroid
+          git add repo
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit -q -m "F-Droid repository for v0.1.${GITHUB_RUN_NUMBER}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" fdroid
