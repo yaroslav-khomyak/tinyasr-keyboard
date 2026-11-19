@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Голосова клавіатура TinyASR</string>
+    <string name="subtype_voice">Голос (українська, англійська)</string>
+
+    <string name="status_idle">Натисніть мікрофон і говоріть</string>
+    <string name="status_loading">Завантаження моделі…</string>
+    <string name="status_listening">Слухаю… натисніть, щоб зупинити</string>
+    <string name="status_finishing">Завершую…</string>
+    <string name="status_permission">Натисніть тут, щоб дозволити мікрофон</string>
+    <string name="status_error">Помилка: %1$s</string>
+
+    <string name="key_switch">Попередня клавіатура</string>
+    <string name="key_language">Мова розпізнавання</string>
+    <string name="key_mic">Мікрофон</string>
+    <string name="key_backspace">Видалити</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_space">Пробіл</string>
+
+    <string name="setup_intro">Голосове введення українською та англійською без інтернету. Мовлення розпізнається на цьому пристрої й нікуди не надсилається.</string>
+    <string name="setup_enable">1. Увімкнути клавіатуру</string>
+    <string name="setup_permission">2. Дозволити мікрофон</string>
+    <string name="setup_choose">3. Перемкнутися на цю клавіатуру</string>
+    <string name="setup_autostart">Починати слухати, щойно відкриється клавіатура</string>
+    <string name="setup_try">Спробуйте тут</string>
+    <string name="setup_about">Розпізнавання мовлення: tinyasr від dkaraush (GPL-3.0-or-later), модель en-ru-uk. Визначення голосу: Silero VAD (MIT). Ця програма є вільним програмним забезпеченням за ліцензією GPL-3.0-or-later.</string>
+</resources>

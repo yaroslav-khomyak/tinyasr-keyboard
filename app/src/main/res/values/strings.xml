@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TinyASR Voice Keyboard</string>
+    <string name="subtype_voice">Voice (Ukrainian, English)</string>
+
+    <string name="status_idle">Tap the microphone and speak</string>
+    <string name="status_loading">Loading the model…</string>
+    <string name="status_listening">Listening… tap to stop</string>
+    <string name="status_finishing">Finishing…</string>
+    <string name="status_permission">Tap here to allow the microphone</string>
+    <string name="status_error">Error: %1$s</string>
+
+    <string name="key_switch">Previous keyboard</string>
+    <string name="key_language">Recognition language</string>
+    <string name="key_mic">Microphone</string>
+    <string name="key_backspace">Delete</string>
+    <string name="key_enter">Enter</string>
+    <string name="key_space">Space</string>
+
+    <string name="setup_intro">Offline voice typing in Ukrainian and English. Speech is recognized on this device and never leaves it.</string>
+    <string name="setup_enable">1. Enable the keyboard</string>
+    <string name="setup_permission">2. Allow the microphone</string>
+    <string name="setup_choose">3. Switch to this keyboard</string>
+    <string name="setup_autostart">Start listening as soon as the keyboard opens</string>
+    <string name="setup_try">Try it here</string>
+    <string name="setup_about">Speech recognition: tinyasr by dkaraush (GPL-3.0-or-later), model en-ru-uk. Voice activity detection: Silero VAD (MIT). This app is free software under the GPL-3.0-or-later.</string>
+</resources>
