@@ -44,8 +44,30 @@ jobs:
       - name: Test
         run: ./gradlew --no-daemon testReleaseUnitTest
 
+      # The private key comes from the repository's secrets; without them the public sideload key is used.
+      - name: Prepare the signing key
+        if: github.event_name != 'pull_request'
+        env:
+          SIGNING_KEYSTORE: ${{ secrets.SIGNING_KEYSTORE }}
+        run: |
+          if [ -n "$SIGNING_KEYSTORE" ]; then
+            printf '%s' "$SIGNING_KEYSTORE" | tr -d '[:space:]' | base64 -d > "$RUNNER_TEMP/release.jks"
+            echo "SIGNING_KEYSTORE_FILE=$RUNNER_TEMP/release.jks" >> "$GITHUB_ENV"
+          else
+            echo "::notice::No signing secrets: signing with the public sideload key"
+          fi
+
       - name: Build
+        env:
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
         run: ./gradlew --no-daemon assembleRelease
+
+      - name: Show the signing certificate
+        run: |
+          apksigner="$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)/apksigner"
+          "$apksigner" verify --print-certs app/build/outputs/apk/release/app-release.apk
 
       - name: Name the APK
         run: cp app/build/outputs/apk/release/app-release.apk tinyasr-keyboard.apk

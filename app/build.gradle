@@ -2,6 +2,9 @@ plugins {
     id "com.android.application"
 }
 
+// The private release key, when the build has one (CI: from the repository's secrets; locally: set these yourself).
+def ownKeystore = System.getenv("SIGNING_KEYSTORE_FILE")
+
 android {
     namespace "app.voicekb.tinyasr"
     compileSdk 35
@@ -19,20 +22,28 @@ android {
     }
 
     signingConfigs {
-        // A fixed key kept in the repository, so that every build can be installed over the previous one.
-        // Fine for a personal sideloaded app; replace it before publishing anywhere.
+        // A public key kept in the repository: used when there is no private one (forks, pull requests, local
+        // builds), so that the project always builds. Anyone can sign with it.
         shared {
             storeFile rootProject.file("signing/sideload.jks")
             storePassword "tinyasr"
             keyAlias "sideload"
             keyPassword "tinyasr"
         }
+        if (ownKeystore) {
+            create("own") {
+                storeFile file(ownKeystore)
+                storePassword System.getenv("SIGNING_STORE_PASSWORD")
+                keyAlias System.getenv("SIGNING_KEY_ALIAS")
+                keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.shared
+            signingConfig ownKeystore ? signingConfigs.own : signingConfigs.shared
         }
         debug {
             signingConfig signingConfigs.shared

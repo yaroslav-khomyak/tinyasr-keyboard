@@ -112,9 +112,13 @@ The models (38 MB + 2 MB) are stored uncompressed in the APK and mapped from it 
 
 ## Signing
 
-`signing/sideload.jks` is a throwaway key kept in the repository so that each build installs over the previous
-one. It is public, so anyone can sign an APK with it: install only from this repository's releases, and use your
-own key if you distribute a fork.
+Release APKs are signed in CI with a private key held in this repository's Actions secrets
+(`SIGNING_KEYSTORE` as base64, `SIGNING_STORE_PASSWORD`, `SIGNING_KEY_ALIAS`, `SIGNING_KEY_PASSWORD`). The
+"Show the signing certificate" step of each build prints the certificate's fingerprint.
+
+Without those secrets (forks, pull requests, local builds) the build falls back to `signing/sideload.jks`, a public
+throwaway key that anyone can sign with. To sign a local build with your own key, set `SIGNING_KEYSTORE_FILE` to
+its path and the other three variables before running Gradle.
 
 ## License
 
