@@ -6,8 +6,8 @@ import android.content.SharedPreferences;
 /** Small settings store. */
 final class Prefs {
     /** Language modes, in the order the language key cycles through them. */
-    static final String[] MODES = {"uk", "en", "uk,en"};
-    private static final String[] LABELS = {"UK", "EN", "UK+EN"};
+    static final String[] MODES = {"uk", "en", "ru", "uk,en"};
+    private static final String[] LABELS = {"UK", "EN", "RU", "UK+EN"};
 
     private final SharedPreferences sp;
 

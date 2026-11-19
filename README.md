@@ -1,10 +1,10 @@
 # TinyASR Voice Keyboard
 
 An Android voice-only keyboard (input method) that types what you say, offline, using
-[tinyasr](https://github.com/dkaraush/tinyasr) and its `en-ru-uk` model. Ukrainian and English are enabled.
+[tinyasr](https://github.com/dkaraush/tinyasr) and its `en-ru-uk` model. Ukrainian, English and Russian can be selected.
 
 - Live text while you speak, with punctuation and capitalization from the model.
-- Keys: previous keyboard (hold: keyboard picker), language (UK / EN / UK+EN), microphone, delete, enter,
+- Keys: previous keyboard (hold: keyboard picker), language (UK / EN / RU / UK+EN), microphone, delete, enter,
   `,` `.` space `?` `!`.
 - Nothing leaves the phone: the app has no internet permission.
 - Android 9+ (API 28), arm64 only.
