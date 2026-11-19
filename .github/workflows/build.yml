@@ -78,8 +78,8 @@ jobs:
           name: tinyasr-keyboard
           path: tinyasr-keyboard.apk
 
-      # One numbered release per build (the version is in app/build.gradle), so that updaters such as Obtainium
-      # see each new one. The newest is always at .../releases/latest.
+      # One numbered release per build (the version is in app/build.gradle), so that builds can be told apart
+      # and installed over each other. The newest is always at .../releases/latest.
       - name: Publish the release
         if: github.event_name != 'pull_request'
         env:

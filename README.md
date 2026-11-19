@@ -30,19 +30,8 @@ model: Ukrainian, English and Russian.
    to it.
 3. In any text field, tap the microphone and speak. Tap again to stop.
 
-### Automatic updates
-
-The app has no internet permission, so it cannot update itself. Use
-[Obtainium](https://github.com/ImranR98/Obtainium), an open-source app that installs and updates apps straight from
-their GitHub releases:
-
-1. Install Obtainium.
-2. In Obtainium tap **Add App**, paste `https://github.com/yaroslav-khomyak/tinyasr-keyboard` as the app source URL, and add it.
-3. Install the keyboard from Obtainium. If you already installed the APK by hand, uninstall it first: Obtainium
-   can only update silently what it installed itself.
-
-Obtainium then checks for new releases in the background. On Android 12+ it can install them without asking;
-on older versions it notifies you.
+To update, download the newest APK from the same link and install it over the old one; settings are kept. The
+installed version is shown at the bottom of the app's screen.
 
 ## Using it
 
