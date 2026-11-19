@@ -28,12 +28,27 @@ scripts/prepare.sh          # fetches tinyasr at the pinned commit, builds libti
 To use another tinyasr version or model, change `TINYASR_REV` / `MODEL` in `scripts/prepare.sh`
 (and `ASR_ASSET` in `VoiceEngine.java`, `LANGS` in `Prefs.java`).
 
+## Tests
+
+```bash
+scripts/prepare.sh && scripts/host-bridge.sh   # the second builds the JNI bridge for this machine
+./gradlew testReleaseUnitTest
+```
+
+- `TranscriptTest`, `PrefsTest`, `TextWriterTest`: the event-to-text logic, the language settings, and how text is
+  written into a (fake) text field.
+- `BridgeHostTest`: loads the real model through the JNI bridge and transcribes `hello_en.wav` (synthetic English
+  speech) into the fake text field. Skipped locally if the host bridge is not built; required in CI.
+
+Not covered: the keyboard view, the microphone and anything else that needs a device.
+
 ## How it works
 
 - `app/src/main/cpp/tinyasr_jni.c`: JNI bridge to the tinyasr C API. Pins the recognizer thread to the big cores.
 - `VoiceEngine`: one recognizer thread; reads the microphone at 16 kHz and feeds a tinyasr streaming session.
 - `Transcript`: turns the session's JSON events into committed and partial text.
-- `VoiceIme`: the keyboard. Partial text is shown as composing text and replaced as the recognizer refines it.
+- `TextWriter`: writes into the editor. Partial text is composing text, replaced as the recognizer refines it.
+- `VoiceIme`: the keyboard view, keys and lifecycle.
 - `SetupActivity`: enable the keyboard, grant the microphone, select it.
 
 ## Signing

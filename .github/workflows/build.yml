@@ -36,7 +36,13 @@ jobs:
       - name: Build tinyasr and unpack the models
         run: scripts/prepare.sh
 
+      - name: Build the JNI bridge for the test machine
+        run: scripts/host-bridge.sh
+
       - uses: gradle/actions/setup-gradle@v4
+
+      - name: Test
+        run: ./gradlew --no-daemon testReleaseUnitTest
 
       - name: Build
         run: ./gradlew --no-daemon assembleRelease

@@ -14,7 +14,11 @@ final class Prefs {
     private final SharedPreferences sp;
 
     Prefs(Context c) {
-        sp = c.getApplicationContext().getSharedPreferences("voice", Context.MODE_PRIVATE);
+        this(c.getApplicationContext().getSharedPreferences("voice", Context.MODE_PRIVATE));
+    }
+
+    Prefs(SharedPreferences sp) {
+        this.sp = sp;
     }
 
     boolean langEnabled(String lang) {

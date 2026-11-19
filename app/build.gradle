@@ -65,6 +65,26 @@ android {
         abortOnError false
         checkReleaseBuilds false
     }
+
+    testOptions {
+        unitTests.all {
+            // BridgeHostTest runs the real model through the JNI bridge built by scripts/host-bridge.sh.
+            systemProperty "java.library.path", file("build/tinyasr/host").absolutePath
+            systemProperty "tinyasr.hostlib", file("build/tinyasr/host").absolutePath
+            systemProperty "tinyasr.assets", file("build/tinyasr/assets").absolutePath
+            testLogging {
+                events "passed", "skipped", "failed"
+                exceptionFormat "full"
+                showStandardStreams = true
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation "junit:junit:4.13.2"
+    // Android's org.json is only a stub in local unit tests.
+    testImplementation "org.json:json:20240303"
 }
 
 // Fails early, with the fix, if the native library or the models have not been prepared.

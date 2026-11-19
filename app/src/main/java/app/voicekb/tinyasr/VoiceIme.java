@@ -39,10 +39,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     private MicButton mic;
 
     private VoiceEngine.State state = VoiceEngine.State.IDLE;
-    /** True while our composing text (the partial) is in the editor. */
-    private boolean composing;
-    /** The space put before the current composing text, if any. */
-    private String composingLead = "";
+    private final TextWriter writer = new TextWriter();
     private String error;
     /** When we last changed the editor's text (uptime ms). */
     private long lastEdit;
@@ -213,7 +210,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     public void onStartInputView(EditorInfo info, boolean restarting) {
         super.onStartInputView(info, restarting);
         if (!engine.isRunning()) {
-            composing = false;
+            writer.reset();
             error = null;
             state = VoiceEngine.State.IDLE;
         }
@@ -249,11 +246,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     /** Drops the recording; what is on screen stays as plain text. */
     private void abort() {
         if (engine.isRunning()) engine.cancel();
-        if (composing) {
-            InputConnection ic = getCurrentInputConnection();
-            if (ic != null) ic.finishComposingText();
-            composing = false;
-        }
+        writer.settle(getCurrentInputConnection());
         state = VoiceEngine.State.IDLE;
         refresh();
     }
@@ -275,7 +268,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
 
     private void startListening() {
         error = null;
-        composing = false;
+        writer.reset();
         state = VoiceEngine.State.LOADING;
         refresh();
         String mode = prefs.mode();
@@ -300,7 +293,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     private void backspace() {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
-        if (composing) abort();
+        if (writer.isComposing()) abort();
         CharSequence sel = ic.getSelectedText(0);
         if (!TextUtils.isEmpty(sel)) {
             ic.commitText("", 1);
@@ -344,7 +337,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
      * start listening again after its edit.
      */
     private boolean settle() {
-        if (!composing) return false;
+        if (!writer.isComposing()) return false;
         boolean listening = engine.isRunning() && state == VoiceEngine.State.LISTENING;
         abort();
         return listening;
@@ -356,7 +349,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
                                   int candidatesEnd) {
         super.onUpdateSelection(oldSelStart, oldSelEnd, newSelStart, newSelEnd, candidatesStart, candidatesEnd);
         // Reports of our own edits arrive a few ms after them; those are not the user's.
-        if (composing && candidatesStart < 0 && SystemClock.uptimeMillis() - lastEdit > 120) {
+        if (writer.isComposing() && candidatesStart < 0 && SystemClock.uptimeMillis() - lastEdit > 120) {
             if (settle()) startListening();
         }
     }
@@ -373,11 +366,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     public void onCommit(String text) {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
-        ic.beginBatchEdit();
-        String lead = composing ? composingLead : leadFor(ic, text);
-        ic.commitText(lead + text, 1);
-        composing = false;
-        ic.endBatchEdit();
+        writer.commit(ic, text);
         lastEdit = SystemClock.uptimeMillis();
     }
 
@@ -385,27 +374,8 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
     public void onPartial(String text) {
         InputConnection ic = getCurrentInputConnection();
         if (ic == null) return;
-        ic.beginBatchEdit();
-        if (text.isEmpty()) {
-            if (composing) ic.commitText("", 1);
-            composing = false;
-        } else {
-            if (!composing) composingLead = leadFor(ic, text);
-            ic.setComposingText(composingLead + text, 1);
-            composing = true;
-        }
-        ic.endBatchEdit();
+        writer.partial(ic, text);
         lastEdit = SystemClock.uptimeMillis();
-    }
-
-    /** A space before new words, unless the text before the cursor already separates them. */
-    private static String leadFor(InputConnection ic, String text) {
-        CharSequence before = ic.getTextBeforeCursor(1, 0);
-        if (before == null || before.length() == 0) return "";
-        char c = before.charAt(0);
-        if (Character.isWhitespace(c) || "([{«„“\"'/-".indexOf(c) >= 0) return "";
-        if (!text.isEmpty() && ".,!?:;)".indexOf(text.charAt(0)) >= 0) return "";
-        return " ";
     }
 
     @Override
@@ -426,9 +396,7 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
 
     @Override
     public void onDone() {
-        InputConnection ic = getCurrentInputConnection();
-        if (composing && ic != null) ic.finishComposingText();
-        composing = false;
+        writer.settle(getCurrentInputConnection());
         state = VoiceEngine.State.IDLE;
         refresh();
     }
