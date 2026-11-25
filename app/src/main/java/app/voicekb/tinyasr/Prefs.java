@@ -101,4 +101,13 @@ final class Prefs {
     void setAutoStart(boolean v) {
         sp.edit().putBoolean("autoStart", v).apply();
     }
+
+    /** Go back to the previous keyboard when a dictation ends (for use from another keyboard's voice key). */
+    boolean returnAfter() {
+        return sp.getBoolean("returnAfter", false);
+    }
+
+    void setReturnAfter(boolean v) {
+        sp.edit().putBoolean("returnAfter", v).apply();
+    }
 }
