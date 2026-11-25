@@ -399,6 +399,8 @@ public final class VoiceIme extends InputMethodService implements VoiceEngine.Li
         writer.settle(getCurrentInputConnection());
         state = VoiceEngine.State.IDLE;
         refresh();
+        // Opened from another keyboard's voice key: hand the field back to it. An error stays on screen instead.
+        if (error == null && prefs.returnAfter()) switchToPreviousInputMethod();
     }
 
     // ---- status ----

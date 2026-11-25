@@ -16,6 +16,13 @@ public class PrefsTest {
         assertEquals(List.of("uk", "en", "ru", "uk,en,ru"), prefs.modes());
         assertEquals("uk", prefs.mode());
         assertFalse(prefs.autoStart());
+        assertFalse(prefs.returnAfter());
+    }
+
+    @Test
+    public void returnAfterIsStored() {
+        prefs.setReturnAfter(true);
+        assertTrue(prefs.returnAfter());
     }
 
     @Test

@@ -86,6 +86,12 @@ public final class SetupActivity extends Activity {
         lp.topMargin = dp(12);
         col.addView(auto, lp);
 
+        CheckBox back = new CheckBox(this);
+        back.setText(R.string.setup_return);
+        back.setChecked(prefs.returnAfter());
+        back.setOnCheckedChangeListener((b, checked) -> prefs.setReturnAfter(checked));
+        col.addView(back);
+
         EditText test = new EditText(this);
         test.setHint(R.string.setup_try);
         test.setMinLines(3);

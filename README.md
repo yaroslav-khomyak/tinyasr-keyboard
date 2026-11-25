@@ -69,6 +69,20 @@ Open the app to change them.
   decoded once per language, so it costs that many times the CPU of a fixed language. If you mostly speak one
   language, a fixed one is faster and more accurate.
 - **Start listening as soon as the keyboard opens.**
+- **Return to the previous keyboard when dictation ends.**
+
+### With HeliBoard (or another keyboard with a voice key)
+
+The app registers as a voice input method, so the voice key of [HeliBoard](https://github.com/HeliBorg/HeliBoard)
+and similar keyboards can open it:
+
+1. In HeliBoard: **Settings → Toolbar → Select toolbar keys**, turn on **Voice input**.
+2. In this app, check **Start listening as soon as the keyboard opens** and **Return to the previous keyboard when
+   dictation ends**.
+3. Tap HeliBoard's microphone, speak, tap the big microphone to stop: the text stays and HeliBoard comes back.
+
+Android offers one voice input method to the voice key and prefers a preinstalled one. If the key opens Google
+voice typing instead, turn that off in **Settings → System → Keyboard → On-screen keyboard**.
 
 ## Accuracy
 
