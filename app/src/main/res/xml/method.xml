@@ -2,7 +2,11 @@
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
     android:settingsActivity="app.voicekb.tinyasr.SetupActivity"
     android:supportsSwitchingToNextInputMethod="true">
+    <!-- Without overridesImplicitlyEnabledSubtype Android enables a non-keyboard subtype only if its locale matches
+         the system's; ours has none, so other keyboards' voice keys (HeliBoard) would not find it. -->
     <subtype
+        android:imeSubtypeLocale=""
         android:imeSubtypeMode="voice"
-        android:label="@string/subtype_voice" />
+        android:label="@string/subtype_voice"
+        android:overridesImplicitlyEnabledSubtype="true" />
 </input-method>
